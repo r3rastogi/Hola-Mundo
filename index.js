@@ -7,8 +7,11 @@ const rl = readline.createInterface({
 });
 
 rl.question('Enter phrase to be translated: ', (input) => {
-    console.log(input);
-    translate(input, {to: 'es'}).then(res => {
+    translate(input, {to: 'Spanish'}).then(res => {
+        console.log(res.text);
+    });
+
+    translate(input, {to: 'German'}).then(res => {
         console.log(res.text);
     });
 
