@@ -1,5 +1,6 @@
-const translate = require('google-translate-api');
 const readline = require('readline');
+const translate = require('google-translate-api');
+const yaml = require('node-yaml');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -7,13 +8,16 @@ const rl = readline.createInterface({
 });
 
 rl.question('Enter phrase to be translated: ', (input) => {
-    translate(input, {to: 'Spanish'}).then(res => {
-        console.log(res.text);
-    });
+    yaml.read('./input.yaml', (err, data) => {
+        if (err) {
+            throw err;
+        }
 
-    translate(input, {to: 'German'}).then(res => {
-        console.log(res.text);
+        data.forEach(function(lang) {
+            translate(input, {to: lang}).then(res => {
+                console.log(lang,': ', res.text);
+            });
+        });
     });
-
   rl.close();
 });
