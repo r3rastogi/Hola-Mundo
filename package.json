@@ -1,0 +1,22 @@
+{
+  "name": "hola-mundo",
+  "version": "1.0.0",
+  "description": "A translation app that will take in a phrase in English and return how to say it in various other languages",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r3rastogi/Hola-Mundo.git"
+  },
+  "author": "Reetika Rastogi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r3rastogi/Hola-Mundo/issues"
+  },
+  "homepage": "https://github.com/r3rastogi/Hola-Mundo#readme",
+  "dependencies": {
+    "google-translate-api": "^2.2.2"
+  }
+}
