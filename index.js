@@ -1,23 +1,23 @@
-const readline = require('readline');
-const translate = require('google-translate-api');
-const yaml = require('node-yaml');
+var cool = require('cool-ascii-faces');
+var express = require('express');
+var app = express();
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+app.set('port', (process.env.PORT || 5000));
+
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/', function(request, response) {
+  response.render('pages/index')
 });
 
-rl.question('Enter phrase to be translated: ', (input) => {
-    yaml.read('./input.yaml', (err, data) => {
-        if (err) {
-            throw err;
-        }
+app.get('/cool', function(request, response) {
+  response.send(cool());
+});
 
-        data.forEach(function(lang) {
-            translate(input, {to: lang}).then(res => {
-                console.log(lang,': ', res.text);
-            });
-        });
-    });
-  rl.close();
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
